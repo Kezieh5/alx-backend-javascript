@@ -1,17 +1,12 @@
-/* eslint no-underscore-dangle: ["error", {"allow": ["_sqft"] }] */
 export default class Building {
-  constructor(sqft) {
-    if (this.constructor !== Building && this.evacuationWarningMessage === undefined) {
-      throw new Error('Class extending Building must override evacuationWarningMessage');
-    }
-    this._sqft = sqft;
-  }
+	  constructor(sqft) {
+		      this._sqft = sqft;
+		      if (this.constructor !== Building && this.evacuationWarningMessage === undefined) {
+			            throw Error('Class extending Building must override evacuationWarningMessage');
+			          }
+		    }
 
-  get sqft() {
-    return this._sqft;
-  }
-
-  set sqft(area) {
-    this._sqft = area;
-  }
+	  get sqft() {
+		      return this._sqft;
+		    }
 }

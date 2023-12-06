@@ -1,34 +1,39 @@
-/* eslint no-underscore-dangle: ["error", {"allow": ["_name", "_code", "_amount", "_currency"] }] */
-/* eslint-disable-next-line */
+/* eslint-disable */
 import Currency from './3-currency';
 
 export default class Pricing {
-  constructor(amount, currency) {
-    this._amount = amount;
-    this._currency = currency;
-  }
+	  constructor(amount, currency) {
+		      this._amount = amount;
+		      this._currency = currency;
+		    }
 
-  get amount() {
-    return this._amount;
-  }
+	  get amount() {
+		      return this._amount;
+		    }
 
-  set amount(cash) {
-    this._amount = cash;
-  }
+	  set amount(amount) {
+		      if (typeof amount !== 'number') {
+			            throw TypeError('amount must be a Number');
+			          }
+		      this._amount = amount;
+		    }
 
-  get currency() {
-    return this._currency;
-  }
+	  get currency() {
+		      return this._currency;
+		    }
 
-  set currency(cur) {
-    this._currency = cur;
-  }
+	  set currency(currency) {
+		      if (!(currency instanceof Currency)) {
+			            throw TypeError('currency must be a Currency');
+			          }
+		      this._currency = currency;
+		    }
 
-  displayFullPrice() {
-    return `${this.amount} ${this.currency.displayFullCurrency()}`;
-  }
+	  displayFullPrice() {
+		      return `${this.amount} ${this.currency.displayFullCurrency()}`;
+		    }
 
-  static convertPrice(amount, conversionRate) {
-    return amount * conversionRate;
-  }
+	  static convertPrice(amount, conversionRate) {
+		      return amount * conversionRate;
+		    }
 }
